@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Covid[19] - A War</title>
+	<link rel="stylesheet" type="text/css" href="covid.css">
+	<script type="text/javascript">
+		
+		fetch('https://api.covid19india.org/data.json')
+		.then((data)=>{
+			return data.json();
+		})
+		.then((fdata)=>{
+			
+			var i;
+			for(i=1;i<38;i++){
+				var a1=fdata.statewise[i].state;
+				var a2=fdata.statewise[i].active;
+				var a3=fdata.statewise[i].recovered;
+				var a4=fdata.statewise[i].deaths;
+				var a5=fdata.statewise[i].confirmed;
+
+				var tr=document.createElement('tr');
+				tr.id=i;
+				
+
+				var td=document.createElement('td');
+				td.innerHTML=a1;
+				
+
+				var td1=document.createElement('td');
+				td1.innerHTML=a2;
+
+				var td2=document.createElement('td');
+				td2.innerHTML=a3;
+
+				var td3=document.createElement('td');
+				td3.innerHTML=a4;
+
+				var td4=document.createElement('td');
+				td4.innerHTML=a5;
+				var aa = tr.appendChild(td);
+				
+				var aa1 = tr.appendChild(td1);
+				var aa2 = tr.appendChild(td2);
+				var aa3 = tr.appendChild(td3);
+				var aa4 = tr.appendChild(td4);
+				document.getElementById('a').appendChild(aa);
+				document.getElementById('a').appendChild(aa1);
+				document.getElementById('a').appendChild(aa2);
+				document.getElementById('a').appendChild(aa3);
+				document.getElementById('a').appendChild(aa4);
+
+				document.getElementById('a').appendChild(tr);
+			}
+			
+			    var v2=fdata.statewise[0].active;
+				var v3=fdata.statewise[0].recovered;
+				var v4=fdata.statewise[0].deaths;
+				var v5=fdata.statewise[0].confirmed;
+
+				
+				var v22=document.createElement('span');
+				v22.innerHTML=v2;
+
+				document.getElementById('b1').appendChild(v22);
+				var v33=document.createElement('span');
+				v33.innerHTML=v3;
+
+				document.getElementById('b2').appendChild(v33);
+
+				var v44=document.createElement('span');
+				v44.innerHTML=v4;
+
+				document.getElementById('b3').appendChild(v44);
+
+				var v55=document.createElement('span');
+				v55.innerHTML=v5;
+
+				document.getElementById('b4').appendChild(v55);
+
+
+		})
+		.catch((error)=>{
+			console.log(error);
+		});
+	</script>
+</head>
+<body>
+	<div class="screen">
+		<div class="shead">
+			<h1>Covid - 19</h1>
+			<hr>
+			<div class="links">
+			
+				<span class="tab1"><a href="covid.html" id="l">Numerical Data</a></span>
+				<span class="tab1"><a href="snp.html" id="l">Symptoms</a> </span>
+
+				<span class="tab1" ><a href="p.html" id="l">Prevention</a></span>
+				<span class="tab1"><a href="atw.html" id="l">World Wide Info</a> </span>
+
+				<span class="tab1"><a href="err.html" id="l">State LookUp</a> </span>
+			</div>
+		</div>
+	
+
+	
+	<div class="main">
+		<div class="head">
+			<h1> The Numerical statics
+		</div>
+		<div id="india"><h2>India</h2></div	>
+		<hr>
+		<hr>	
+		<div class="num">
+			<div id="b1">Active Cases<br></div>
+			<div id="b2">Recovered<br></div>
+			<div id="b3">Deaths<br></div>
+			<div id="b4">Total<br></div>
+		</div>
+		<div class="states">
+			<table id="a"><tr class="a3">
+				<td id="s" class="a3">States</td>
+				<td class="a3">Active cases</td>
+				<td class="a3">Recovered cases</td>
+				<td class="a3">Deceased cases</td>
+				<td class="a3">Confirmed cases</td>
+			</tr>
+			    
+
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>
