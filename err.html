@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Covid-19 A War</title>
+</head>
+
+	<link rel="stylesheet" type="text/css" href="covid.css">
+<script type="text/javascript">
+	fetch('https://api.covid19india.org/v2/state_district_wise.json')
+		.then((data)=>{
+			return data.json();
+		})
+		.then((fdata)=>{
+			console.log(fdata);
+			for(i=1;i<37;i++){
+				  var a=fdata[i];
+				    
+				   var b=a.state;
+
+				   //console.log(i,b);
+				    var t=document.createElement('li');
+				    
+				    t.innerHTML='<span id = " '+ i +'" onclick="call(this)">' + b + '</span>';
+				    //console.log(t);
+				   document.getElementById('list').appendChild(t);
+			      }
+		});	
+		var clk=0;
+		function  call(num){
+			
+			a=num.id;
+			console.log(a);
+			
+			console.log(clk);
+			if(clk!=0){
+			var remove=document.getElementById('body');
+			remove.removeChild(remove.childNodes[3]);
+			console.log(remove.childNodes[3]);
+		}
+		 
+		 var final=document.createElement('div');
+		 final.id="main";
+		 console.log(final);
+		 final.innerHTML='<div class="head">		<h1> The Numerical statics</h1>		    </div><div id="india"><h2></h2></div>		<hr>		<hr>			<div class="num">			<div id="b1">Active Cases<br></div>			<div id="b2">Recovered<br></div>			<div id="b3">Deaths<br></div>			<div id="b4">Total<br></div>		</div>		<div class="states">			<table id="a"><tr class="a3">				<td id="s" class="a3">Regions</td>				<td class="a3">Active cases</td>				<td class="a3">Recovered cases</td>				<td class="a3">Deceased cases</td>				<td class="a3">Confirmed cases</td>			</tr>			</table>';
+		 document.getElementById('body').appendChild(final);
+		 console.log(final);
+
+
+			
+		 clk=clk+1;
+			fetch('https://api.covid19india.org/v2/state_district_wise.json')
+		.then((data)=>{
+			return data.json();
+		})
+		.then((fdata)=>{
+
+			for(i=0;i<37;i++){
+				var name=fdata[i].state;
+				if(i==a){
+					var a2=fdata[i];
+					var a3=a2.districtData;
+					//console.log(a3);
+					//console.log(a3.length);
+
+					var h=document.createElement('h2');
+					h.innerHTML=fdata[i].state;
+					document.getElementById('india').appendChild(h);
+
+					var s1=0;
+					var s2=0;
+						var s3=0;
+					var s4=0; 
+			
+
+
+					for(i=0;i<a3.length;i++){
+						var p1=a3[i].district;
+						var p2=a3[i].active;
+						var p3=a3[i].recovered;
+						var p4=a3[i].deceased;
+						var p5=a3[i].confirmed;
+						console.log(p1,p2,p3,p4,p5);
+						console.log(p1);
+						var tr=document.createElement('tr');
+						tr.id="rep";
+						
+						
+						s1+=a3[i].active;
+						
+						s2+=a3[i].recovered;
+						s3+=a3[i].deceased;
+						s4+=a3[i].confirmed;
+				
+
+				var td=document.createElement('td');
+				td.innerHTML=p1;
+				
+
+				var td1=document.createElement('td');
+				td1.innerHTML=p2;
+
+				var td2=document.createElement('td');
+				td2.innerHTML=p3;
+
+				var td3=document.createElement('td');
+				td3.innerHTML=p4;
+
+				var td4=document.createElement('td');
+				td4.innerHTML=p5;
+				var aa = tr.appendChild(td);
+				
+				var aa1 = tr.appendChild(td1);
+				var aa2 = tr.appendChild(td2);
+				var aa3 = tr.appendChild(td3);
+				var aa4 = tr.appendChild(td4);
+				console.log(aa);
+
+				document.getElementById('a').appendChild(aa);
+				document.getElementById('a').appendChild(aa1);
+				document.getElementById('a').appendChild(aa2);
+				document.getElementById('a').appendChild(aa3);
+				document.getElementById('a').appendChild(aa4);
+
+				document.getElementById('a').appendChild(tr);
+			
+					}
+				
+					var v22=document.createElement('span');
+				v22.innerHTML=s1;
+
+				document.getElementById('b1').appendChild(v22);
+				var v33=document.createElement('span');
+				v33.innerHTML=s2;
+
+				document.getElementById('b2').appendChild(v33);
+
+				var v44=document.createElement('span');
+				v44.innerHTML=s3;
+
+				document.getElementById('b3').appendChild(v44);
+
+				var v55=document.createElement('span');
+				v55.innerHTML=s4;
+
+				document.getElementById('b4').appendChild(v55);
+
+
+
+				console.log(s1,s2,s3,s4);
+					
+				}
+			}
+
+			
+	
+
+
+		});
+		}		
+</script>
+<body>
+	
+	<div class="screen">
+		<div class="shead">
+			<h1>Covid - 19</h1>
+			<hr>
+			<div class="links">
+				
+				<span class="tab1"><a href="covid.html" id="l">Numerical Data</a></span>
+				<span class="tab1"><a href="snp.html" id="l">Symptoms</a> </span>
+
+				<span class="tab1" ><a href="p.html" id="l">Prevention</a></span>
+				<span class="tab1"><a href="atw.html" id="l">World Wide Info</a> </span>
+
+				<span class="tab1"><a href="err.html" id="l">State LookUp</a> </span>		</div>
+		</div>
+	</div>
+
+<div id="body">
+
+	<div class="left"><ul id="list"></ul></div>
+</div>	
+</div>
+</div>
+</body>
